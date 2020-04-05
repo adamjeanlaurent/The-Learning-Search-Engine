@@ -18,14 +18,14 @@ router.get('/', (req, res) => {
         access_token_key: TWITTER.ACCESS_TOKEN_KEY,
         access_token_secret: TWITTER.ACCESS_TOKEN_SECRET
     });
-    
+
     const params = {q: searchTerm};
 
     client.get('users/search', params, (error, twitterAccounts, response) => {
         if(!error) {
             res.send(twitterAccounts);
         }
-        if(error) {
+        else {
             res.send(error);
         }
     });
