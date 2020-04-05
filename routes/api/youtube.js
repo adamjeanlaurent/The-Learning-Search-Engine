@@ -3,6 +3,10 @@ const request = require('request');
 const {YOUTUBE} = require('../../config.json');
 const router = express.Router();
 
+// @route GET api/youtube
+// @desc Get YouTube Videos By Search Term
+// @access Need YouTube API Credentials
+
 router.get('/', (req, res) => {
     let searchTerm = req.body.searchTerm;
     searchTerm = searchTerm.replace(/ /g,"%20");
