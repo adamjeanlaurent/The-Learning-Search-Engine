@@ -10,9 +10,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
     let searchTerm = req.body.searchTerm;
     searchTerm = searchTerm.replace(/ /g,"%20");
-
+    
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&key=${YOUTUBE.API_KEY}`;
-
+    
     request(url , (error, response, body) => {
         if(!error) {
             res.json(JSON.parse(body));
