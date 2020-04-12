@@ -1,7 +1,15 @@
 const express = require('express');
 const request = require('request');
-const router = express.Router();
+const searchResult = require('../../models/searchResult');
 
+function parseMediumPosts(json) {
+    let result = [];
+    for(let post of json.posts) {
+        result.push(new searchResult(post.title, ));
+    }
+}
+
+const router = express.Router();
 router.get('/', (req,res) => {
     let searchTerm = req.body.searchTerm;
     searchTerm = searchTerm.replace(/ /g ,"%20");
@@ -15,15 +23,18 @@ router.get('/', (req,res) => {
             // parses the posts JSON from the html
             const postsJson = body.match(regex);
             
-            // this removes all the \'s from the html because it was causing issues and escaping strings
-            postsJson[0] = postsJson[0].replace(/\\/g, '');
-            
+            // this removes all the \'s from the html because it was causing issues and escaping strings, it also removes any \" 
+            postsJson[0] = postsJson[0].replace(/(\\"|\\)/g, '');
+            let str = '';
+    
+            console.log(postsJson[0]);
             try {
                 let json = JSON.parse(postsJson[0]);
                 return res.send(json);
             }
 
             catch(e) {
+                console.log(e);
                 res.send('hello');
             }
         }
