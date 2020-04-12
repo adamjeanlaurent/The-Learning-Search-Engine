@@ -9,6 +9,10 @@ function parseMediumPosts(json) {
     }
 }
 
+// @route GET api/medium
+// @desc Get Medium Posts By Search Term, Limit is 10 Per Call For Now
+// @access 
+
 const router = express.Router();
 router.get('/', (req,res) => {
     let searchTerm = req.body.searchTerm;
