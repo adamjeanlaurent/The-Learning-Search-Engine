@@ -1,13 +1,17 @@
 const express = require('express');
 const twitter = require('twitter');
-const {TWITTER} = require('../../config.json'); 
+const {TWITTER} = require('../../config.json');
+const searchResult = require('../../models/searchResult'); 
 const router = express.Router();
 
-// function parseTwitterAccounts(json) {
-//     let result = [];
+function parseTwitterAccounts(json) {
+    let result = [];
 
-//     for(let acc of json.)
-// }
+    for(let acc of json) {
+        result.push(new searchResult(acc.name, `twitter.com/${acc.screen_name}`, acc.profile_image_url_https));
+    }
+    return result;
+}
 
 // @route GET api/twitter
 // @desc Get Twitter Accounts By Search Term
@@ -29,7 +33,7 @@ router.get('/', (req, res) => {
 
     client.get('users/search', params, (error, twitterAccounts, response) => {
         if(!error) {
-            res.send(twitterAccounts);
+            res.send(parseTwitterAccounts(twitterAccounts));
         }
         else {
             res.send(error);
