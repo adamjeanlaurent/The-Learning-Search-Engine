@@ -5,8 +5,10 @@ const searchResult = require('../../models/searchResult');
 function parseMediumPosts(json) {
     let result = [];
     for(let post of json.posts) {
-        result.push(new searchResult(post.title, ));
+        // for the last one, if the article has a previewImage use that, otherwise use the profile picture of the author 
+        result.push(new searchResult(post.title, `medium.com/@${post.creator.username}/${post.uniqueSlug}`, `cdn-images-1.medium.com/${(post.virtuals.previewImage.imageId) ? post.virtuals.previewImage.imageId : post.creator.imageId}`));
     }
+    return result;
 }
 
 // @route GET api/medium
@@ -31,15 +33,13 @@ router.get('/', (req,res) => {
             postsJson[0] = postsJson[0].replace(/(\\"|\\)/g, '');
             let str = '';
     
-            console.log(postsJson[0]);
             try {
                 let json = JSON.parse(postsJson[0]);
-                return res.send(json);
+                return res.send(parseMediumPosts(json));
             }
 
             catch(e) {
-                console.log(e);
-                res.send('hello');
+                res.send('error occurred');
             }
         }
 

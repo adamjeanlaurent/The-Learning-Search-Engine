@@ -3,6 +3,12 @@ const twitter = require('twitter');
 const {TWITTER} = require('../../config.json'); 
 const router = express.Router();
 
+// function parseTwitterAccounts(json) {
+//     let result = [];
+
+//     for(let acc of json.)
+// }
+
 // @route GET api/twitter
 // @desc Get Twitter Accounts By Search Term
 // @access Need Twitter API Credentials
