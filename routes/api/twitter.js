@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
         access_token_secret: TWITTER.ACCESS_TOKEN_SECRET
     });
 
-    const params = {q: searchTerm};
+    const params = {q: searchTerm, count: 10};
 
     client.get('users/search', params, (error, twitterAccounts, response) => {
         if(!error) {

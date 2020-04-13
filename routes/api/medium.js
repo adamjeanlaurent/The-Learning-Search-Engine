@@ -31,7 +31,6 @@ router.get('/', (req,res) => {
             
             // this removes all the \'s from the html because it was causing issues and escaping strings, it also removes any \" 
             postsJson[0] = postsJson[0].replace(/(\\"|\\)/g, '');
-            let str = '';
     
             try {
                 let json = JSON.parse(postsJson[0]);
