@@ -4,8 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install -prefix client",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -16,7 +19,7 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adamjeanlaurent/Learning-Search-Engine/issues"
-  },
+  },  
   "homepage": "https://github.com/adamjeanlaurent/Learning-Search-Engine#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
