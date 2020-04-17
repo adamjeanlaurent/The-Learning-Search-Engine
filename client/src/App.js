@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import AppNavbar from './components/AppNavbar';
+import LearningSearchEngine from "./components/LearningSearchEngine";
 
 function App() {
   return (
     <div className="App">
-      <AppNavbar/>
+      <LearningSearchEngine />
     </div>
   );
 }
