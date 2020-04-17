@@ -10,7 +10,7 @@ function parseMediumPosts(json) {
     }
     return result;
 }
-
+ 
 // @route GET api/medium
 // @desc Get Medium Posts By Search Term, Limit is 10 Per Call For Now
 // @access 
@@ -18,8 +18,7 @@ function parseMediumPosts(json) {
 const router = express.Router();
 router.get('/', (req,res) => {
     let searchTerm = req.body.searchTerm;
-    searchTerm = searchTerm.replace(/ /g ,"%20");
-
+    searchTerm = searchTerm.replace(/ /g ,"%20"); 
     let url = `https://medium.com/search?q=${searchTerm}`;
 
     request(url, (error, response, body) => {
@@ -31,7 +30,7 @@ router.get('/', (req,res) => {
             
             // this removes all the \'s from the html because it was causing issues and escaping strings, it also removes any \" 
             postsJson[0] = postsJson[0].replace(/(\\"|\\)/g, '');
-    
+            
             try {
                 let json = JSON.parse(postsJson[0]);
                 return res.send(parseMediumPosts(json));
@@ -43,7 +42,7 @@ router.get('/', (req,res) => {
         }
 
         else {
-           res.send(error);
+           return res.send(error);
         }
     });
 });
