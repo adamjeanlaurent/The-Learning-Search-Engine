@@ -13,7 +13,7 @@ export default function AppSearchBar(props) {
             sb.style.backgroundColor = "";
         }, 100);
 
-        // call function from props to populate and stuff in here too
+        props.search("soccer");
     }
 
     return (

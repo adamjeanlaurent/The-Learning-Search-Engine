@@ -24,7 +24,6 @@ function parseTwitterAccounts(json) {
 // @access Need Twitter API Credentials
 
 router.get("/:searchTerm", (req, res) => {
-    console.log("hello");
     // res.setHeader(
     //   "Access-Control-Allow-Headers",
     //   "Origin, X-Requested-With, Content-Type, Accept"
