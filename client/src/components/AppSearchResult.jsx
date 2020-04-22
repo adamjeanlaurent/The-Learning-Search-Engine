@@ -17,7 +17,7 @@ export default function AppSearchResult(props) {
             <Card>
                 <CardImg
                     top
-                    width="100%"
+                    width="90%"
                     src={props.image}
                     alt="Alternate Image"
                 />

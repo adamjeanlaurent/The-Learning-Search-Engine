@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Container, Row, Col } from "reactstrap";
 
@@ -49,11 +49,75 @@ export default function AppSearchResultsModal(props) {
         <div>
             <AppSearchBar search={FetchDataFromAPIs} />
             <Container className="mt-5">
-                <div style={{ width: "33.3%", display: "inline-block" }}>
+                {apiData.youtubeVideos.map((vid, idx) => {
+                    return (
+                        <Row key={uniqid()}>
+                            <Col
+                                key={uniqid()}
+                                xs="4"
+                                sm="4"
+                                md="4"
+                                lg="4"
+                                xl="4"
+                            >
+                                <AppSearchResult
+                                    image={
+                                        idx >= apiData.mediumPosts.length
+                                            ? ""
+                                            : apiData.mediumPosts[idx].image
+                                    }
+                                    title={
+                                        idx >= apiData.mediumPosts.length
+                                            ? ""
+                                            : apiData.mediumPosts[idx].title
+                                    }
+                                    link={
+                                        idx >= apiData.mediumPosts.length
+                                            ? ""
+                                            : apiData.mediumPosts[idx].link
+                                    }
+                                    key={uniqid()}
+                                />
+                            </Col>
+                            <Col
+                                key={uniqid()}
+                                xs="4"
+                                sm="4"
+                                md="4"
+                                lg="4"
+                                xl="4"
+                            >
+                                <AppSearchResult
+                                    image={vid.image}
+                                    title={vid.title}
+                                    link={vid.link}
+                                    key={uniqid()}
+                                />
+                            </Col>
+                            <Col
+                                key={uniqid()}
+                                xs="4"
+                                sm="4"
+                                md="4"
+                                lg="4"
+                                xl="4"
+                            >
+                                <AppSearchResult
+                                    image={apiData.twitterAccounts[idx].image}
+                                    title={apiData.twitterAccounts[idx].title}
+                                    link={apiData.twitterAccounts[idx].link}
+                                    key={uniqid()}
+                                />
+                            </Col>
+                        </Row>
+                    );
+                })}
+
+                {/* <div style={{ width: "33.3%", display: "inline-block" }}>
                     {apiData.mediumPosts.map((post) => {
                         return (
-                            <Row>
-                                <Col>
+                            <Row key={uniqid()} className="mb-3">
+                                <Col key={uniqid()} lg="11">
                                     <AppSearchResult
                                         image={post.image}
                                         title={post.title}
@@ -69,8 +133,8 @@ export default function AppSearchResultsModal(props) {
                 <div style={{ width: "33.3%", display: "inline-block" }}>
                     {apiData.youtubeVideos.map((vid) => {
                         return (
-                            <Row>
-                                <Col>
+                            <Row key={uniqid()} className="mb-3">
+                                <Col key={uniqid()} lg="11">
                                     <AppSearchResult
                                         image={vid.image}
                                         title={vid.title}
@@ -86,8 +150,8 @@ export default function AppSearchResultsModal(props) {
                 <div style={{ width: "33.3%", display: "inline-block" }}>
                     {apiData.twitterAccounts.map((acc) => {
                         return (
-                            <Row>
-                                <Col>
+                            <Row key={uniqid()} className="mb-3">
+                                <Col key={uniqid()} lg="11">
                                     <AppSearchResult
                                         image={acc.image}
                                         title={acc.title}
@@ -98,13 +162,8 @@ export default function AppSearchResultsModal(props) {
                             </Row>
                         );
                     })}
-                </div>
+                </div> */}
             </Container>
         </div>
     );
 }
-
-/*
-    We are going to have a dynamic number of rows, each rows has 3 columns
-    going to have to think about how we want to rows to collapse in the future
-*/
