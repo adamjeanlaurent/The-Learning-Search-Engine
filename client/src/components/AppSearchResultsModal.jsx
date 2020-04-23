@@ -22,6 +22,11 @@ export default function AppSearchResultsModal(props) {
         mediumPosts: [],
         youtubeVideos: [],
     });
+
+    function contentExists(arr, idx) {
+        return arr.length > idx;
+    }
+
     function FetchDataFromAPIs(searchTerm) {
         axios
             .all([
@@ -60,24 +65,36 @@ export default function AppSearchResultsModal(props) {
                                 lg="4"
                                 xl="4"
                             >
-                                <AppSearchResult
-                                    image={
-                                        idx >= apiData.mediumPosts.length
-                                            ? ""
-                                            : apiData.mediumPosts[idx].image
-                                    }
-                                    title={
-                                        idx >= apiData.mediumPosts.length
-                                            ? ""
-                                            : apiData.mediumPosts[idx].title
-                                    }
-                                    link={
-                                        idx >= apiData.mediumPosts.length
-                                            ? ""
-                                            : apiData.mediumPosts[idx].link
-                                    }
-                                    key={uniqid()}
-                                />
+                                {contentExists(apiData.mediumPosts, idx) ? (
+                                    <AppSearchResult
+                                        image={apiData.mediumPosts[idx].image}
+                                        title={apiData.mediumPosts[idx].title}
+                                        link={apiData.mediumPosts[idx].link}
+                                        key={uniqid()}
+                                    />
+                                ) : (
+                                    ""
+                                )}
+                            </Col>
+
+                            <Col
+                                key={uniqid()}
+                                xs="4"
+                                sm="4"
+                                md="4"
+                                lg="4"
+                                xl="4"
+                            >
+                                {contentExists(apiData.youtubeVideos, idx) ? (
+                                    <AppSearchResult
+                                        image={apiData.youtubeVideos[idx].image}
+                                        title={apiData.youtubeVideos[idx].title}
+                                        link={apiData.youtubeVideos[idx].link}
+                                        key={uniqid()}
+                                    />
+                                ) : (
+                                    ""
+                                )}
                             </Col>
                             <Col
                                 key={uniqid()}
@@ -87,27 +104,20 @@ export default function AppSearchResultsModal(props) {
                                 lg="4"
                                 xl="4"
                             >
-                                <AppSearchResult
-                                    image={vid.image}
-                                    title={vid.title}
-                                    link={vid.link}
-                                    key={uniqid()}
-                                />
-                            </Col>
-                            <Col
-                                key={uniqid()}
-                                xs="4"
-                                sm="4"
-                                md="4"
-                                lg="4"
-                                xl="4"
-                            >
-                                <AppSearchResult
-                                    image={apiData.twitterAccounts[idx].image}
-                                    title={apiData.twitterAccounts[idx].title}
-                                    link={apiData.twitterAccounts[idx].link}
-                                    key={uniqid()}
-                                />
+                                {contentExists(apiData.twitterAccounts, idx) ? (
+                                    <AppSearchResult
+                                        image={
+                                            apiData.twitterAccounts[idx].image
+                                        }
+                                        title={
+                                            apiData.twitterAccounts[idx].title
+                                        }
+                                        link={apiData.twitterAccounts[idx].link}
+                                        key={uniqid()}
+                                    />
+                                ) : (
+                                    ""
+                                )}
                             </Col>
                         </Row>
                     );
