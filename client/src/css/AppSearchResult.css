@@ -1,0 +1,16 @@
+.searchResultImage {
+    width: 200px;
+    height: 200px;
+}
+
+.searchResultBody {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+
+.searchResultCard {
+    width: 80%;
+    height: 80%;
+}

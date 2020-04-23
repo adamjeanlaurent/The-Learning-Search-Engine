@@ -1,28 +1,23 @@
 import React from "react";
 
-import {
-    Card,
-    CardImg,
-    CardText,
-    CardBody,
-    CardTitle,
-    CardSubtitle,
-    Button,
-    CardLink,
-} from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardLink } from "reactstrap";
+
+import "../css/AppSearchResult.css";
 
 export default function AppSearchResult(props) {
     return (
         <div>
-            <Card>
+            <Card className="searchResultCard">
                 <CardImg
+                    className="searchResultImage"
                     top
-                    width="90%"
                     src={props.image}
                     alt="Alternate Image"
                 />
                 <CardBody>
-                    <CardTitle>{props.title}</CardTitle>
+                    <CardTitle className="searchResultBody">
+                        {props.title}
+                    </CardTitle>
                     <CardLink href={props.link}>Link</CardLink>
                 </CardBody>
             </Card>

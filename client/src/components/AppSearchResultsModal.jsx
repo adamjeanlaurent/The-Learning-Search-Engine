@@ -21,10 +21,20 @@ export default function AppSearchResultsModal(props) {
         twitterAccounts: [],
         mediumPosts: [],
         youtubeVideos: [],
+        dummyArr: [],
     });
 
     function contentExists(arr, idx) {
         return arr.length > idx;
+    }
+
+    function fillDummyArr(a1, a2, a3) {
+        let dummyArr = [];
+        let indexesToFill = Math.max(a1.length, a2.length, a3.length);
+        for (let i = 0; i < indexesToFill; i++) {
+            dummyArr.push(i);
+        }
+        return dummyArr;
     }
 
     function FetchDataFromAPIs(searchTerm) {
@@ -39,6 +49,11 @@ export default function AppSearchResultsModal(props) {
                     twitterAccounts: responseArr[0].data,
                     mediumPosts: responseArr[1].data,
                     youtubeVideos: responseArr[2].data,
+                    dummyArr: fillDummyArr(
+                        responseArr[0].data,
+                        responseArr[1].data,
+                        responseArr[2].data
+                    ),
                 });
             })
             .catch((error) => {
@@ -46,6 +61,7 @@ export default function AppSearchResultsModal(props) {
                     twitterAccounts: [],
                     mediumPosts: [],
                     youtubeVideos: [],
+                    dummyArr: [],
                 });
             });
     }
@@ -54,7 +70,7 @@ export default function AppSearchResultsModal(props) {
         <div>
             <AppSearchBar search={FetchDataFromAPIs} />
             <Container className="mt-5">
-                {apiData.youtubeVideos.map((vid, idx) => {
+                {apiData.dummyArr.map((vid, idx) => {
                     return (
                         <Row key={uniqid()}>
                             <Col
@@ -122,57 +138,6 @@ export default function AppSearchResultsModal(props) {
                         </Row>
                     );
                 })}
-
-                {/* <div style={{ width: "33.3%", display: "inline-block" }}>
-                    {apiData.mediumPosts.map((post) => {
-                        return (
-                            <Row key={uniqid()} className="mb-3">
-                                <Col key={uniqid()} lg="11">
-                                    <AppSearchResult
-                                        image={post.image}
-                                        title={post.title}
-                                        link={post.link}
-                                        key={uniqid()}
-                                    />
-                                </Col>
-                            </Row>
-                        );
-                    })}
-                </div>
-
-                <div style={{ width: "33.3%", display: "inline-block" }}>
-                    {apiData.youtubeVideos.map((vid) => {
-                        return (
-                            <Row key={uniqid()} className="mb-3">
-                                <Col key={uniqid()} lg="11">
-                                    <AppSearchResult
-                                        image={vid.image}
-                                        title={vid.title}
-                                        link={vid.link}
-                                        key={uniqid()}
-                                    />
-                                </Col>
-                            </Row>
-                        );
-                    })}
-                </div>
-
-                <div style={{ width: "33.3%", display: "inline-block" }}>
-                    {apiData.twitterAccounts.map((acc) => {
-                        return (
-                            <Row key={uniqid()} className="mb-3">
-                                <Col key={uniqid()} lg="11">
-                                    <AppSearchResult
-                                        image={acc.image}
-                                        title={acc.title}
-                                        link={acc.link}
-                                        key={uniqid()}
-                                    />
-                                </Col>
-                            </Row>
-                        );
-                    })}
-                </div> */}
             </Container>
         </div>
     );
