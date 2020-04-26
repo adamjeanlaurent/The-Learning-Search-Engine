@@ -10,6 +10,8 @@ import AppSearchBar from "./AppSearchBar";
 
 import AppSearchResult from "./AppSearchResult";
 
+import AppLogoColumnBar from "./AppLogoColumnBar";
+
 // import FetchDataFromAPIS from "../scripts/APICalls";
 
 // NOTE THIS SEEMS TO WORK ?? but somehow I exceeded my number of api calls for the day
@@ -70,6 +72,7 @@ export default function AppSearchResultsModal(props) {
         <div>
             <AppSearchBar search={FetchDataFromAPIs} />
             <Container className="mt-5">
+                <AppLogoColumnBar />
                 {apiData.dummyArr.map((vid, idx) => {
                     return (
                         <Row key={uniqid()}>

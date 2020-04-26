@@ -12,8 +12,10 @@ export default function AppSearchBar(props) {
         setTimeout(() => {
             sb.style.backgroundColor = "";
         }, 100);
-
-        props.search("soccer");
+        let searchTerm = document.querySelector(".form-control").value;
+        if (searchTerm.length > 0) {
+            props.search(searchTerm);
+        }
     }
 
     return (
